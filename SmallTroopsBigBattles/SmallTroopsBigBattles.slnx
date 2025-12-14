@@ -1,2 +1,4 @@
 ﻿<Solution>
+  <Project Path="SmallTroopsBigBattles.Core.csproj" />
+  <Project Path="SmallTroopsBigBattles.UI.csproj" />
 </Solution>
