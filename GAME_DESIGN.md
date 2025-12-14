@@ -491,7 +491,7 @@ public class Territory
 
     // 領地結構
     public Building Mansion;        // 府邸 (預設，不可移除)
-    public const int MaxBuildingSlots = 20;  // 20個空建築位
+    public const int MaxBuildingSlots = 15;  // 15個空建築位 (科技可升至20)
     public List<Building> Buildings; // 私人建築 (最多20個)
 
     public int StationedSoldiers;   // 該領地囤放的士兵數
@@ -532,7 +532,7 @@ public enum TerritoryBuildingType
 │                                                             │
 │  每個領地預設:                                               │
 │  ┌─────────────────────────────────────────────────────┐   │
-│  │  [府邸] + [空位×20]                                   │   │
+│  │  [府邸] + [空位×15]  (科技可升至20)                    │   │
 │  │     ↓                                               │   │
 │  │  府邸: 領地核心建築，不可拆除                          │   │
 │  │  空位: 可自由建設任意設施                             │   │
@@ -584,7 +584,7 @@ public enum TerritoryBuildingType
 │  策略考量:                                                  │
 │  • 專精單一兵種: 堆疊同類設施，訓練更快                       │
 │  • 均衡發展: 各類設施都有，兵種多樣但訓練較慢                  │
-│  • 20個建築位有限，需權衡資源產出與軍事訓練                    │
+│  • 15個建築位有限 (科技最多+5)，需權衡資源產出與軍事訓練       │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
