@@ -1,5 +1,2 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="SmallTroopsBigBattles.Core.csproj" />
-  <Project Path="SmallTroopsBigBattles.UI.csproj" />
 </Solution>
