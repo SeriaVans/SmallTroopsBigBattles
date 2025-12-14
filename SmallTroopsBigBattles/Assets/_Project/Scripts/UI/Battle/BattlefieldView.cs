@@ -82,7 +82,10 @@ namespace SmallTroopsBigBattles.UI.Battle
             CenterView();
 
             // 初始顯示
-            UpdateSoldierPositions();
+            if (battlefield != null && battlefield.Soldiers != null)
+            {
+                UpdateSoldierPositions();
+            }
         }
 
         /// <summary>
@@ -100,7 +103,7 @@ namespace SmallTroopsBigBattles.UI.Battle
         /// </summary>
         private void UpdateSoldierPositions()
         {
-            if (_battlefield == null) return;
+            if (_battlefield == null || _battlefield.Soldiers == null) return;
 
             // 計算視口範圍
             UpdateViewportRect();
@@ -113,12 +116,17 @@ namespace SmallTroopsBigBattles.UI.Battle
 
             foreach (var soldier in visibleSoldiers)
             {
+                if (soldier == null) continue;
+
                 usedIds.Add(soldier.SoldierId);
 
                 if (_soldierUIMap.TryGetValue(soldier.SoldierId, out var soldierUI))
                 {
                     // 更新現有 UI
-                    soldierUI.UpdateFromSoldier(soldier);
+                    if (soldierUI != null)
+                    {
+                        soldierUI.UpdateFromSoldier(soldier);
+                    }
                 }
                 else
                 {
@@ -138,7 +146,10 @@ namespace SmallTroopsBigBattles.UI.Battle
             {
                 if (!usedIds.Contains(kvp.Key))
                 {
-                    ReturnSoldierUIToPool(kvp.Value);
+                    if (kvp.Value != null)
+                    {
+                        ReturnSoldierUIToPool(kvp.Value);
+                    }
                     toRemove.Add(kvp.Key);
                 }
             }

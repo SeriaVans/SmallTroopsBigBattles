@@ -8,6 +8,7 @@ using SmallTroopsBigBattles.Game.General;
 using SmallTroopsBigBattles.Game.Map;
 using SmallTroopsBigBattles.Game.City;
 using SmallTroopsBigBattles.Game.Battle;
+using SmallTroopsBigBattles.UI;
 
 namespace SmallTroopsBigBattles.Core
 {
@@ -80,6 +81,26 @@ namespace SmallTroopsBigBattles.Core
         {
             // 訪問 Instance 會自動創建
             _ = EventManager.Instance;
+            
+            // 初始化 UIManager 層級
+            var uiManager = UIManager.Instance;
+            if (uiManager != null)
+            {
+                var mainCanvas = GameObject.Find("MainCanvas");
+                if (mainCanvas != null)
+                {
+                    var normalLayer = mainCanvas.transform.Find("NormalLayer");
+                    var popupLayer = mainCanvas.transform.Find("PopupLayer");
+                    var topLayer = mainCanvas.transform.Find("TopLayer");
+                    
+                    if (normalLayer != null && popupLayer != null && topLayer != null)
+                    {
+                        uiManager.SetupLayers(normalLayer, popupLayer, topLayer);
+                        Debug.Log("[GameManager] UIManager 層級設置完成");
+                    }
+                }
+            }
+            
             _ = ResourceManager.Instance;
             _ = TerritoryManager.Instance;
             _ = ArmyManager.Instance;

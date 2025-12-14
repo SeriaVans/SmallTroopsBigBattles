@@ -87,7 +87,7 @@ public class MapSetupEditor : EditorWindow
                 nameText.fontSize = 12;
                 nameText.color = Color.white;
                 nameText.alignment = TextAlignmentOptions.Center;
-                nameText.enableWordWrapping = false;
+                nameText.textWrappingMode = TextWrappingModes.NoWrap;
             }
         }
 

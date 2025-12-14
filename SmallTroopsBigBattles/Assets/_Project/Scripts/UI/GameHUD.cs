@@ -6,6 +6,7 @@ using SmallTroopsBigBattles.Core.Events;
 using SmallTroopsBigBattles.Game.Resource;
 using SmallTroopsBigBattles.Game.Army;
 using SmallTroopsBigBattles.UI.Panels;
+using SmallTroopsBigBattles.Game.Battle;
 
 namespace SmallTroopsBigBattles.UI
 {
@@ -37,6 +38,9 @@ namespace SmallTroopsBigBattles.UI
 
         private void Awake()
         {
+            // 自動查找並連接 UI 元素（如果引用為空）
+            AutoConnectReferences();
+
             // 綁定按鈕事件
             if (territoryButton != null)
                 territoryButton.onClick.AddListener(OnTerritoryButtonClick);
@@ -55,6 +59,98 @@ namespace SmallTroopsBigBattles.UI
 
             if (settingsButton != null)
                 settingsButton.onClick.AddListener(OnSettingsButtonClick);
+        }
+
+        /// <summary>
+        /// 自動連接 UI 引用（如果為空）
+        /// </summary>
+        private void AutoConnectReferences()
+        {
+            // 玩家資訊
+            if (playerNameText == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/PlayerInfoPanel/PlayerNameText");
+                if (obj != null) playerNameText = obj.GetComponent<TextMeshProUGUI>();
+            }
+
+            if (playerLevelText == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/PlayerInfoPanel/PlayerLevelText");
+                if (obj != null) playerLevelText = obj.GetComponent<TextMeshProUGUI>();
+            }
+
+            // 資源顯示
+            if (copperText == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/TopResourceBar/CopperText");
+                if (obj != null) copperText = obj.GetComponent<TextMeshProUGUI>();
+            }
+
+            if (woodText == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/TopResourceBar/WoodText");
+                if (obj != null) woodText = obj.GetComponent<TextMeshProUGUI>();
+            }
+
+            if (stoneText == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/TopResourceBar/StoneText");
+                if (obj != null) stoneText = obj.GetComponent<TextMeshProUGUI>();
+            }
+
+            if (foodText == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/TopResourceBar/FoodText");
+                if (obj != null) foodText = obj.GetComponent<TextMeshProUGUI>();
+            }
+
+            if (soldierCountText == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/TopResourceBar/SoldierCountText");
+                if (obj != null) soldierCountText = obj.GetComponent<TextMeshProUGUI>();
+            }
+
+            // 按鈕
+            if (territoryButton == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/BottomButtonBar/TerritoryButton");
+                if (obj != null) territoryButton = obj.GetComponent<Button>();
+            }
+
+            if (armyButton == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/BottomButtonBar/ArmyButton");
+                if (obj != null) armyButton = obj.GetComponent<Button>();
+            }
+
+            if (generalButton == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/BottomButtonBar/GeneralButton");
+                if (obj != null) generalButton = obj.GetComponent<Button>();
+            }
+
+            if (mapButton == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/BottomButtonBar/MapButton");
+                if (obj != null) mapButton = obj.GetComponent<Button>();
+            }
+
+            if (settingsButton == null)
+            {
+                var obj = GameObject.Find("MainCanvas/HUD/BottomButtonBar/SettingsButton");
+                if (obj != null) settingsButton = obj.GetComponent<Button>();
+            }
+
+            // 測試戰鬥按鈕（如果存在）
+            var testBattleButtonObj = GameObject.Find("MainCanvas/HUD/BottomButtonBar/TestBattleButton");
+            if (testBattleButtonObj != null)
+            {
+                var testBattleButton = testBattleButtonObj.GetComponent<Button>();
+                if (testBattleButton != null)
+                {
+                    testBattleButton.onClick.AddListener(OnTestBattleButtonClick);
+                }
+            }
         }
 
         private void Start()
@@ -166,6 +262,21 @@ namespace SmallTroopsBigBattles.UI
         {
             Debug.Log("[GameHUD] 地圖功能開發中...");
             // TODO: UIManager.Instance?.OpenPanel<MapPanel>();
+        }
+
+        /// <summary>
+        /// 測試戰鬥按鈕（開發用）
+        /// </summary>
+        public void OnTestBattleButtonClick()
+        {
+            var tester = FindObjectOfType<BattleTester>();
+            if (tester == null)
+            {
+                var testerObj = new GameObject("BattleTester");
+                tester = testerObj.AddComponent<BattleTester>();
+            }
+
+            tester.CreateTestBattle();
         }
 
         private void OnQuestButtonClick()
