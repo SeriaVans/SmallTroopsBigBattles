@@ -121,17 +121,17 @@ namespace SmallTroopsBigBattles.UI
                 new Vector2(0, -40), new Vector2(0, 40), _headerBgColor);
 
             float xPos = 50;
-            var copperText = CreateText(topBar, "CopperText", $"銅: 0", new Vector2(xPos, 0)); xPos += 200;
-            var woodText = CreateText(topBar, "WoodText", $"木: 0", new Vector2(xPos, 0)); xPos += 200;
-            var stoneText = CreateText(topBar, "StoneText", $"石: 0", new Vector2(xPos, 0)); xPos += 200;
-            var foodText = CreateText(topBar, "FoodText", $"糧: 0", new Vector2(xPos, 0));
+            var copperText = CreateText(topBar.transform, "CopperText", $"銅: 0", new Vector2(xPos, 0)); xPos += 200;
+            var woodText = CreateText(topBar.transform, "WoodText", $"木: 0", new Vector2(xPos, 0)); xPos += 200;
+            var stoneText = CreateText(topBar.transform, "StoneText", $"石: 0", new Vector2(xPos, 0)); xPos += 200;
+            var foodText = CreateText(topBar.transform, "FoodText", $"糧: 0", new Vector2(xPos, 0));
 
             // 玩家資訊 (右上)
-            var playerName = CreateText(topBar, "PlayerNameText", "玩家", new Vector2(-200, 0));
+            var playerName = CreateText(topBar.transform, "PlayerNameText", "玩家", new Vector2(-200, 0));
             playerName.GetComponent<RectTransform>().anchorMin = new Vector2(1, 0.5f);
             playerName.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0.5f);
 
-            var playerLevel = CreateText(topBar, "PlayerLevelText", "Lv.1", new Vector2(-80, 0));
+            var playerLevel = CreateText(topBar.transform, "PlayerLevelText", "Lv.1", new Vector2(-80, 0));
             playerLevel.GetComponent<RectTransform>().anchorMin = new Vector2(1, 0.5f);
             playerLevel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0.5f);
 
@@ -139,14 +139,14 @@ namespace SmallTroopsBigBattles.UI
             var bottomBar = CreatePanel(hudObj.transform, "BottomBar", new Vector2(0, 0), new Vector2(1, 0),
                 new Vector2(0, 50), new Vector2(0, -50), _headerBgColor);
 
-            var territoryBtn = CreateButton(bottomBar, "TerritoryButton", "領地", new Vector2(-400, 0), new Vector2(120, 60));
-            var armyBtn = CreateButton(bottomBar, "ArmyButton", "軍隊", new Vector2(-240, 0), new Vector2(120, 60));
-            var generalBtn = CreateButton(bottomBar, "GeneralButton", "將領", new Vector2(-80, 0), new Vector2(120, 60));
-            var mapBtn = CreateButton(bottomBar, "MapButton", "地圖", new Vector2(80, 0), new Vector2(120, 60));
-            var settingsBtn = CreateButton(bottomBar, "SettingsButton", "設定", new Vector2(240, 0), new Vector2(120, 60));
+            var territoryBtn = CreateButton(bottomBar.transform, "TerritoryButton", "領地", new Vector2(-400, 0), new Vector2(120, 60));
+            var armyBtn = CreateButton(bottomBar.transform, "ArmyButton", "軍隊", new Vector2(-240, 0), new Vector2(120, 60));
+            var generalBtn = CreateButton(bottomBar.transform, "GeneralButton", "將領", new Vector2(-80, 0), new Vector2(120, 60));
+            var mapBtn = CreateButton(bottomBar.transform, "MapButton", "地圖", new Vector2(80, 0), new Vector2(120, 60));
+            var settingsBtn = CreateButton(bottomBar.transform, "SettingsButton", "設定", new Vector2(240, 0), new Vector2(120, 60));
 
             // 軍隊顯示
-            var soldierText = CreateText(topBar, "SoldierCountText", "兵: 0/5000", new Vector2(-400, 0));
+            var soldierText = CreateText(topBar.transform, "SoldierCountText", "兵: 0/5000", new Vector2(-400, 0));
             soldierText.GetComponent<RectTransform>().anchorMin = new Vector2(1, 0.5f);
             soldierText.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0.5f);
 
